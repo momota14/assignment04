@@ -1,4 +1,18 @@
-.dropdown-menu[data-bs-popper] {
+.dropdown-menu.show {
+  left: unset;
   right: 0 !important;
-  left: -100% !important;
+  width: 320px !important;
+  margin-top: 7px;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productDetails {
+  color: #6c6c6c;
+  font-size: 12px;
 }

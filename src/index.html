@@ -15,21 +15,26 @@
   <body>
     <!-- As a heading -->
     <nav class="navbar bg-body-tertiary bg-dark">
-      <div class="container flex justify-content-between">
-        <h1 class="navbar-brand mb-0 h1">Navbar</h1>
+      <div class="container flex justify-content-between py-2">
+        <h1 class="navbar-brand mb-0 h1">Smart Market</h1>
+
         <div class="dropdown">
           <button
-            class="btn btn-secondary dropdown-toggle"
+            id="dropdownBtn"
+            class="btn btn-primary dropdown-toggle"
             type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
+            data-toggle="dropdown"
           >
-            <i class="fa-solid fa-cart-plus"></i> (0)
+            <i class="fa-solid fa-cart-plus"></i>
+            <span id="totalProduct">(0)</span>
           </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <ul class="dropdown-menu px-3">
+            <div id="cartList"></div>
+            <span id="total"></span>
+            <!-- <h6 class="d-flex justify-content-between pe-2  ps-4 border-top border-light-subtle pt-2 mt-2   ">
+              <div>Total</div>
+              <div>${978}</div>
+            </h6> -->
           </ul>
         </div>
       </div>
@@ -41,36 +46,13 @@
             <h4>New products</h4>
           </header>
 
-          <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
-              <div class="card w-100 my-2 shadow-2-strong">
-                <img
-                  src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp"
-                  class="card-img-top"
-                  style="aspect-ratio: 1 / 1"
-                />
-                <div class="card-body d-flex flex-column">
-                  <h5 class="card-title font-sm">
-                    GoPro HERO6 4K Action Camera - Black
-                  </h5>
-                  <p class="card-text">$790.50</p>
-                  <div
-                    class="card-footer d-flex align-items-center pt-0 px-0 pb-0 mt-auto bg-white border-0"
-                  >
-                    <a href="#!" class="btn btn-primary shadow-0 me-1"
-                      >Add to cart</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="row" id="productsList"></div>
         </div>
       </section>
     </div>
 
     <!-- scripts  -->
-    <script src="js/main.js"></script>
+    <script type="module" src="js/app.js"></script>
     <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
