@@ -1,2 +1,1 @@
-
-
+$(".dropdown-toggle").dropdown();
