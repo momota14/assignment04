@@ -36,7 +36,7 @@ const cart = {
   },
 
   removeCart(itemId) {
-    //
+    //remove the cart
 
     const index = this.productArr.findIndex((item) => item.id === itemId);
     if (index !== -1) {
