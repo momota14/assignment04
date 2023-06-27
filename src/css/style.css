@@ -16,3 +16,27 @@
   color: #6c6c6c;
   font-size: 12px;
 }
+
+.cartItem {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.cartItem::-webkit-scrollbar {
+  width: 2px;
+  margin: 3px;
+  display: block;
+}
+
+
+.cartItem::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.cartItem::-webkit-scrollbar-thumb {
+  background: #dddddd;
+}
+
+.cartItem::-webkit-scrollbar-thumb:hover {
+  background: #c3c3c3;
+}

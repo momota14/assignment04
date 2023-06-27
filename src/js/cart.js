@@ -3,6 +3,7 @@ import products from "./product.js";
 const totalProduct = document.getElementById("totalProduct");
 const cartList = document.getElementById("cartList");
 const clearList = document.getElementById("clear");
+
 const cart = {
   productArr: [],
   grandTotal: 0,
@@ -11,7 +12,7 @@ const cart = {
     let totalQuantity = 0;
     let grandTotalProduct = 0;
     if (this.productArr.length > 0) {
-      for (var i = 0; i < this.productArr.length; i++) {
+      for (let i = 0; i < this.productArr.length; i++) {
         totalQuantity += this.productArr[i].quantity;
         grandTotalProduct += this.productArr[i].total;
       }
@@ -30,7 +31,7 @@ const cart = {
       this.productArr.map((product) => {
         return (cartList.innerHTML += `
           <li>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center" style="padding-right: 3px;">
               <div class="item-left d-flex align-items-center">
                   <img class="w-25" src=${product?.image} alt="" />
                   <div class="item-info">
@@ -49,7 +50,7 @@ const cart = {
       });
     } else {
       cartList.innerHTML =
-        "<div class='text-center text-secondary'>No products in the cart</div>";
+        "<div class='text-center text-secondary py-2'>No products in the cart</div>";
     }
 
     const removeItemButtons = document.querySelectorAll(".remove-item");
@@ -84,14 +85,14 @@ const cart = {
     const existingProduct = this.productArr?.find(
       (product) => product?.id === productId
     );
-    
+
     if (existingProduct && selectProduct) {
       quantity = existingProduct?.quantity + 1;
     } else {
       quantity = 1;
       selectProduct;
-    } 
-    
+    }
+
     const cartItem = {
       id: selectProduct.id,
       name: selectProduct.name,
