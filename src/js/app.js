@@ -54,8 +54,8 @@ addToCartButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const productId = parseInt(button.dataset.productId);
     cart.addCart(productId);
-    cart.totalCart()
-    cart.displayCart()
+    cart.totalCart();
+    cart.displayCart();
   });
 });
 

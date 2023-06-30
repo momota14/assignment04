@@ -10,22 +10,20 @@ const cart = {
 
   totalCart() {
     let totalQuantity = 0;
-    let grandTotalProduct = 0;
     if (this.productArr.length > 0) {
       for (let i = 0; i < this.productArr.length; i++) {
         totalQuantity += this.productArr[i].quantity;
-        grandTotalProduct += this.productArr[i].total;
       }
       clearList.classList.add("d-flex");
     } else {
       clearList.classList.remove("d-flex");
     }
-    this.grandTotal = grandTotalProduct;
     totalProduct.innerHTML = `(${totalQuantity})`;
     this.grandTotalFUnc();
   },
 
   displayCart() {
+    // cart rendering
     if (this.productArr.length > 0) {
       cartList.innerHTML = "";
       this.productArr.map((product) => {
@@ -36,7 +34,15 @@ const cart = {
                   <img class="w-25" src=${product?.image} alt="" />
                   <div class="item-info">
                       <div class="line-clamp">${product?.name}</div>
-                      <div class="productDetails">${product?.quantity} x <span class="text-danger ">$${product?.price}</span></div>
+                      
+
+                      <!-- -->
+                       <div class="quantity">
+                        <div class="quantity__minus unselectable" data-item-id="${product?.id}">-</div>
+                        <input name="quantity" type="text" class="quantity__input" value=${product?.quantity} disabled>
+                        <div class="quantity__plus unselectable" data-item-id="${product?.id}">+</div>
+                        <div class="productDetails" style="padding-left: 4px;"> x <span class="text-danger ">$${product?.price}</span></div>
+                      </div>
                   </div>
               </div>
               <div class="item-right">
@@ -62,9 +68,27 @@ const cart = {
         this.displayCart();
       });
     });
+
+    const incrementBtn = document.querySelectorAll(".quantity__plus");
+    incrementBtn.forEach((button) => {
+      button.addEventListener("click", () => {
+        const itemId = parseInt(button.dataset.itemId);
+        this.incrementCart(itemId);
+      });
+    });
+
+    const decrementBtn = document.querySelectorAll(".quantity__minus");
+    decrementBtn.forEach((button) => {
+      button.addEventListener("click", () => {
+        const itemId = parseInt(button.dataset.itemId);
+        this.decrementCart(itemId);
+      });
+    });
   },
 
   grandTotalFUnc() {
+    // Subtotal render
+    let grandTotalProduct = 0;
     const grandTotalEl = document.getElementById("total");
     if (this.grandTotal > 0) {
       grandTotalEl.innerHTML = `
@@ -76,6 +100,14 @@ const cart = {
     } else {
       grandTotalEl.innerHTML = "";
     }
+
+    if (this.productArr.length > 0) {
+      for (let i = 0; i < this.productArr.length; i++) {
+        grandTotalProduct +=
+          this.productArr[i].price * this.productArr[i].quantity;
+      }
+    }
+    this.grandTotal = grandTotalProduct;
   },
 
   addCart(productId) {
@@ -99,7 +131,6 @@ const cart = {
       image: selectProduct.image,
       price: selectProduct.price,
       quantity: quantity,
-      total: selectProduct.price * quantity,
     };
 
     if (existingProduct) {
@@ -113,13 +144,31 @@ const cart = {
     this.displayCart();
   },
 
+  incrementCart(itemId) {
+    // increment product quantity
+    const index = this.productArr.findIndex((item) => item.id === itemId);
+    this.productArr[index].quantity++;
+    this.totalCart();
+    this.displayCart();
+    this.grandTotalFUnc();
+  },
+  decrementCart(itemId) {
+    // decrement product quantity
+    const index = this.productArr.findIndex((item) => item.id === itemId);
+    if (this.productArr[index]?.quantity > 1) {
+      this.productArr[index].quantity--;
+    } else {
+      this.removeCart(itemId);
+    }
+    this.totalCart();
+    this.displayCart();
+    this.grandTotalFUnc();
+  },
+
   removeCart(itemId) {
     //remove the cart
-
     const index = this.productArr.findIndex((item) => item.id === itemId);
     if (index !== -1) {
-      const item = this.productArr[index];
-      this.grandTotalItem -= item.total;
       this.productArr.splice(index, 1);
     }
 
@@ -127,6 +176,7 @@ const cart = {
   },
 
   clearCart() {
+    // clear the cart data
     this.productArr = [];
     this.grandTotal = 0;
     this.totalCart();
