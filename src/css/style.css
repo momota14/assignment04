@@ -3,7 +3,7 @@
 .dropdown-menu.show {
   left: unset;
   right: 0 !important;
-  width: 320px !important;
+  width: 300px !important;
   margin-top: 13px;
 }
 

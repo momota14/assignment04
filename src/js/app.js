@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 products.map((product) => {
-  // console.log(product);
+  // Product Rendering
   return (productsList.innerHTML += `
      <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card w-100 my-2 shadow-2-strong">
@@ -35,11 +35,11 @@ products.map((product) => {
             <h5 class="card-title h6">
               ${product?.name}
             </h5>
-            <p class="card-text"> $${product?.price}</p>
+            <p class="card-text fw-medium text-secondary text-sm">Price: $${product?.price}</p>
             <div
               class="card-footer d-flex align-items-center pt-0 px-0 pb-0 mt-auto bg-white border-0"
             >
-              <div class="add-to-cart btn btn-primary shadow-0 me-1" data-product-id="${product?.id}"
+              <div class="add-to-cart btn btn-outline-primary btn-sm w-100 shadow-0 me-1" data-product-id="${product?.id}"
                 >Add to cart</
               >
             </div>

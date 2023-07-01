@@ -29,26 +29,22 @@ const cart = {
       this.productArr.map((product) => {
         return (cartList.innerHTML += `
           <li>
-            <div class="d-flex justify-content-between align-items-center" style="padding-right: 3px;">
+            <div class="d-flex justify-content-between align-items-center unselectable" style="padding-right: 3px;">
               <div class="item-left d-flex align-items-center">
                   <img class="w-25" src=${product?.image} alt="" />
                   <div class="item-info">
-                      <div class="line-clamp">${product?.name}</div>
-                      
-
-                      <!-- -->
-                       <div class="quantity">
-                        <div class="quantity__minus unselectable" data-item-id="${product?.id}">-</div>
-                        <input name="quantity" type="text" class="quantity__input" value=${product?.quantity} disabled>
-                        <div class="quantity__plus unselectable" data-item-id="${product?.id}">+</div>
-                        <div class="productDetails" style="padding-left: 4px;"> x <span class="text-danger ">$${product?.price}</span></div>
-                      </div>
+                    <small class="line-clamp fw-semibold pb-1 ">${product?.name}</small> 
+                      <!-- quantity increment decrement -->
+                      <div class="quantity">
+                      <div class="quantity__minus unselectable" data-item-id="${product?.id}">-</div>
+                      <input name="quantity" type="text" class="quantity__input" value=${product?.quantity} disabled>
+                      <div class="quantity__plus unselectable" data-item-id="${product?.id}">+</div>
+                      <div class="productDetails fw-medium" style="padding-left: 4px;"> x <span class="text-danger ">$${product?.price}</span></div>
+                    </div>
                   </div>
               </div>
               <div class="item-right">
-                  <button class="remove-item btn btn-danger  fa-solid fa-trash-can" data-item-id="${product?.id}">
-                    
-                  </button>
+                  <button class="remove-item btn btn-outline-danger  fa-solid fa-trash-can" data-item-id="${product?.id}"></button>
               </div>
           </div>
         </li>
@@ -92,9 +88,9 @@ const cart = {
     const grandTotalEl = document.getElementById("total");
     if (this.grandTotal > 0) {
       grandTotalEl.innerHTML = `
-        <h6 class="d-flex justify-content-between border-top border-light-subtle pt-2 mt-2 text-secondary  ">
+        <h6 class="d-flex justify-content-between border-top border-light-subtle pt-2 mt-2 text-secondary">
           <div>SUBTOTAL</div>
-          <div>${this.grandTotal.toFixed(2)}</div>
+          <div>$${this.grandTotal.toFixed(2)}</div>
         </h6>
       `;
     } else {
@@ -150,8 +146,8 @@ const cart = {
     this.productArr[index].quantity++;
     this.totalCart();
     this.displayCart();
-    this.grandTotalFUnc();
   },
+
   decrementCart(itemId) {
     // decrement product quantity
     const index = this.productArr.findIndex((item) => item.id === itemId);
@@ -162,7 +158,6 @@ const cart = {
     }
     this.totalCart();
     this.displayCart();
-    this.grandTotalFUnc();
   },
 
   removeCart(itemId) {

@@ -31,7 +31,7 @@ const products = [
   },
   {
     id: 6,
-    name: "T-shirts with multiple colors, for men and lady",
+    name: "Audemars Piguet Classic Business Watch",
     image: "image/6.webp",
     price: 120.5,
   },
@@ -43,7 +43,7 @@ const products = [
   },
   {
     id: 8,
-    name: "T-shirts with multiple colors, for men and lady",
+    name: "Bag with multiple colors, for men and lady",
     image: "image/8.webp",
     price: 120.5,
   },
